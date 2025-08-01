@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Attas Chop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      direction: rtl;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    header {
+      background-color: #00695c;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #004d40;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav button {
+      background-color: #009688;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    nav button:hover {
+      background-color: #00796b;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .product-card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      width: 250px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .order-btn {
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      margin: 20px auto;
+      display: block;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .order-btn:hover {
+      background-color: #128C4A;
+      transform: scale(1.05);
+    }
+
+    .payment-method {
+      text-align: center;
+      font-weight: bold;
+      margin: 10px 0 30px;
+    }
+
+    footer {
+      background-color: #004d40;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .contact-form {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .dark-mode {
+      background-color: #222;
+      color: #eee;
+    }
+
+    .dark-mode .product-card {
+      background-color: #333;
+      color: white;
+      border: 1px solid #444;
+    }
+
+    .dark-mode nav,
+    .dark-mode footer {
+      background-color: #111;
+    }
+
+    .dark-mode header {
+      background-color: #222;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>مرحبا بكم في متجر الزيوت الطبيعية</h1>
+</header>
+
+<nav>
+  <button onclick="showSection('home')">الرئيسية</button>
+  <button onclick="showSection('about')">حول Attas Chop</button>
+  <button onclick="showSection('contact')">قسم الشكايات</button>
+  <button onclick="toggleDarkMode()">تغيير الوضع</button>
+</nav>
+
+<!-- الرئيسية -->
+<div id="home">
+  <div class="products">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x200.png?text=زيت+أركان" alt="زيت أركان">
+      <h3>زيت أركان</h3>
+      <p>السعر: 80 درهم</p>
+      <input type="number" id="qty1" min="0" value="0">
+    </div>
+
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x200.png?text=زيت+الخروع" alt="زيت الخروع">
+      <h3>زيت الخروع</h3>
+      <p>السعر: 60 درهم</p>
+      <input type="number" id="qty2" min="0" value="0">
+    </div>
+
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x200.png?text=زيت+جوز+الهند" alt="زيت جوز الهند">
+      <h3>زيت جوز الهند</h3>
+      <p>السعر: 70 درهم</p>
+      <input type="number" id="qty3" min="0" value="0">
+    </div>
+  </div>
+
+  <button class="order-btn" onclick="sendFullOrder()">تأكيد الطلب عبر واتساب</button>
+
+  <div class="payment-method">💳 طريقة الدفع: الدفع عند الاستلام</div>
+</div>
+
+<!-- حول -->
+<div id="about" class="hidden">
+  <div style="padding: 30px; text-align: center;">
+    <h2>حول Attas Chop</h2>
+    <p>نحن متخصصون في بيع الزيوت الطبيعية عالية الجودة، مع خبرة تفوق 5 سنوات في تلبية طلبات الزبناء بكل احترافية.</p>
+  </div>
+</div>
+
+<!-- قسم الشكايات -->
+<div id="contact" class="hidden">
+  <div class="contact-form">
+    <h2>قسم الشكايات</h2>
+    <input type="text" id="name" placeholder="الاسم الكامل">
+    <input type="text" id="phone" placeholder="رقم الهاتف">
+    <textarea id="message" placeholder="اكتب شكواك هنا..." rows="5"></textarea>
+    <button class="order-btn" onclick="sendContactMessage()">إرسال الشكاية عبر واتساب</button>
+  </div>
+</div>
+
+<footer>
+  📱 إنستغرام: <a href="https://instagram.com/souhail__attas" target="_blank" style="color: #80cbc4;">@souhail__attas</a> |
+  📞 +212710442624
+</footer>
+
+<script>
+  function showSection(id) {
+    document.getElementById("home").classList.add("hidden");
+    document.getElementById("about").classList.add("hidden");
+    document.getElementById("contact").classList.add("hidden");
+    document.getElementById(id).classList.remove("hidden");
+  }
+
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+
+  function sendContactMessage() {
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const msg = document.getElementById('message').value;
+    const fullMessage = `مرحبا، اسمي ${name}، ورقمي ${phone}.\nشكايتي: ${msg}`;
+    const whatsappUrl = `https://wa.me/212710442624?text=${encodeURIComponent(fullMessage)}`;
+    window.open(whatsappUrl, '_blank');
+  }
+
+  function sendFullOrder() {
+    const products = [
+      { name: 'زيت أركان', price: 80, qty: parseInt(document.getElementById('qty1').value) },
+      { name: 'زيت الخروع', price: 60, qty: parseInt(document.getElementById('qty2').value) },
+      { name: 'زيت جوز الهند', price: 70, qty: parseInt(document.getElementById('qty3').value) }
+    ];
+
+    let message = 'السلام عليكم، بغيت نطلب:\n';
+    let total = 0;
+    let anySelected = false;
+
+    products.forEach(prod => {
+      if (prod.qty > 0) {
+        let productTotal = prod.price * prod.qty;
+        if (prod.qty >= 3) {
+          productTotal *= 0.9;
+          message += `- ${prod.qty} × ${prod.name} (تخفيض 10%) = ${productTotal.toFixed(1)} درهم\n`;
+        } else {
+          message += `- ${prod.qty} × ${prod.name} = ${productTotal} درهم\n`;
+        }
+
+        total += productTotal;
+        anySelected = true;
+      }
+    });
+
+    if (!anySelected) {
+      alert("المرجو اختيار واحد على الأقل من المنتجات.");
+      return;
+    }
+
+    if (total >= 300) {
+      const discounted = total * 0.85;
+      message += `\n🔻 خصم 15% على الطلب الكبير!\nالمجموع قبل التخفيض: ${total.toFixed(1)} درهم\nالمجموع بعد التخفيض: ${discounted.toFixed(1)} درهم`;
+      total = discounted;
+    }
+
+    message += `\nالمجموع النهائي: ${total.toFixed(1)} درهم`;
+
+    const phone = '212710442624';
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
