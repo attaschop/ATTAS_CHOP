@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Attas Chop</title>
   <style>
+    /* جميع التنسيقات و الأنيميشن */
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
@@ -12,6 +13,23 @@
       background-color: #f9f9f9;
       direction: rtl;
       transition: background-color 0.4s, color 0.4s;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s ease-out forwards;
+    }
+
+    .fade-up.delay-1 { animation-delay: 0.3s; }
+    .fade-up.delay-2 { animation-delay: 0.6s; }
+    .fade-up.delay-3 { animation-delay: 0.9s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     header {
@@ -104,6 +122,11 @@
       font-size: 15px;
     }
 
+    footer a {
+      color: #80cbc4;
+      text-decoration: none;
+    }
+
     .hidden {
       display: none;
     }
@@ -143,7 +166,6 @@
       background-color: #222;
     }
 
-    /* ----------- Responsive للهاتف ----------- */
     @media (max-width: 768px) {
       body {
         font-size: 16px;
@@ -184,6 +206,17 @@
 
 <body>
 
+<!-- ✅ واجهة ترحيبية -->
+<section style="background: url('https://images.unsplash.com/photo-1606761568499-9aa418ddafd6?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover; padding: 100px 20px; text-align: center; color: white;">
+  <h1 class="fade-up delay-1" style="font-size: 36px; margin-bottom: 20px;">اكتشف جودة الزيوت الطبيعية 💧</h1>
+  <p class="fade-up delay-2" style="font-size: 20px; max-width: 600px; margin: auto;">
+    نوفر لك أجود الزيوت المستخلصة بعناية، مع توصيل سريع لجميع المدن المغربية.
+  </p>
+  <a class="fade-up delay-3" href="#home" style="margin-top: 30px; display: inline-block; padding: 15px 25px; background-color: #25D366; color: white; border-radius: 8px; text-decoration: none; font-size: 18px;">
+    تصفح المنتجات الآن
+  </a>
+</section>
+
 <header>
   <h1>مرحبا بكم في متجر الزيوت الطبيعية</h1>
 </header>
@@ -195,7 +228,7 @@
   <button onclick="toggleDarkMode()">تغيير الوضع</button>
 </nav>
 
-<!-- الرئيسية -->
+<!-- المنتجات -->
 <div id="home">
   <div class="products">
     <div class="product-card">
@@ -229,11 +262,11 @@
 <div id="about" class="hidden">
   <div style="padding: 30px; text-align: center;">
     <h2>حول Attas Chop</h2>
-    <p>نحن متخصصون في بيع الزيوت الطبيعية عالية الجودة، مع خبرة تفوق 5 سنوات في تلبية طلبات الزبناء بكل احترافية.</p>
+    <p>نحن متخصصون في بيع الزيوت الطبيعية عالية الجودة، مع خبرة تفوق 5 سنوات في تلبية طلبات الزبناء.</p>
   </div>
 </div>
 
-<!-- قسم الشكايات -->
+<!-- الشكايات -->
 <div id="contact" class="hidden">
   <div class="contact-form">
     <h2>قسم الشكايات</h2>
@@ -244,8 +277,30 @@
   </div>
 </div>
 
+<!-- ✅ قسم آراء الزبناء -->
+<section style="background-color: #e0f2f1; padding: 40px 20px; text-align: center;">
+  <h2 style="margin-bottom: 30px; color: #004d40;">آراء الزبناء</h2>
+  <div style="max-width: 800px; margin: auto;">
+    <div style="margin-bottom: 25px;">
+      <p style="font-size: 20px;">⭐️⭐️⭐️⭐️⭐️</p>
+      <p style="font-style: italic;">"توصلت بالطلبية فنهار ونص، الزيت راااائع وريحته زوينة بزاف!"</p>
+      <p>- خديجة من مراكش</p>
+    </div>
+    <div style="margin-bottom: 25px;">
+      <p style="font-size: 20px;">⭐️⭐️⭐️⭐️⭐️</p>
+      <p style="font-style: italic;">"ثاني مرة كنطلب من عندهم، دايماً كيلتازمو بالموعد 👌"</p>
+      <p>- ياسين من فاس</p>
+    </div>
+    <div>
+      <p style="font-size: 20px;">⭐️⭐️⭐️⭐️</p>
+      <p style="font-style: italic;">"زيت أركان طبيعي 100%، بديت كنلاحظ الفرق من أول أسبوع!"</p>
+      <p>- هند من الدار البيضاء</p>
+    </div>
+  </div>
+</section>
+
 <footer>
-  📱 إنستغرام: <a href="https://instagram.com/souhail__attas" target="_blank" style="color: #80cbc4;">@souhail__attas</a> |
+  📱 إنستغرام: <a href="https://instagram.com/souhail__attas" target="_blank">souhail__attas</a> |
   📞 +212710442624
 </footer>
 
@@ -290,7 +345,6 @@
         } else {
           message += `- ${prod.qty} × ${prod.name} = ${productTotal} درهم\n`;
         }
-
         total += productTotal;
         anySelected = true;
       }
